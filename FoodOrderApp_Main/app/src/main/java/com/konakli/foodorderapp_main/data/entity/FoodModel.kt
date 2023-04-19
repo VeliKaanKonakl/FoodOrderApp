@@ -7,4 +7,4 @@ data class FoodModel(
     @SerializedName("yemek_adi") val foodName: String,
     @SerializedName("yemek_resim_adi") val foodImage: String,
     @SerializedName("yemek_fiyat") val foodPrice: Int
-)
+) : java.io.Serializable

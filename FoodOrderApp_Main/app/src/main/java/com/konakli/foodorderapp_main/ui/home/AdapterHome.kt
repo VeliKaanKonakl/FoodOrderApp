@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.konakli.foodorderapp_main.R
 import com.konakli.foodorderapp_main.data.entity.FoodModel
 import com.konakli.foodorderapp_main.databinding.CardDesignBinding
+import com.konakli.foodorderapp_main.ui.detail.DetailFragment
 import com.konakli.foodorderapp_main.ui.home.HomeViewModel
 
 class AdapterHome(var mContext:Context,var foodList:List<FoodModel>,var viewModel:HomeViewModel) :
@@ -25,8 +27,6 @@ class AdapterHome(var mContext:Context,var foodList:List<FoodModel>,var viewMode
         return CardViewFood(binding)
     }
 
-
-
     override fun getItemCount(): Int {
         return foodList.size
     }
@@ -41,5 +41,14 @@ class AdapterHome(var mContext:Context,var foodList:List<FoodModel>,var viewMode
             .load("http://kasimadalan.pe.hu/yemekler/resimler/${food.foodImage}")
             .override(300,300)
             .into(holder.productImage)
+        //holder.binding.foodCardView.setOnClickListener {
+        //    Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailFragment)
+        // }
+        t.foodCardView.setOnClickListener {
+            val to = HomeFragmentDirections.actionHomeFragmentToDetailFragment(food = food)
+            Navigation.findNavController(it).navigate(to)
+        }
+
+
     }
 }

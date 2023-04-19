@@ -25,5 +25,9 @@
         android:id="@+id/detailFragment"
         android:name="com.konakli.foodorderapp_main.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="food"
+            app:argType="com.konakli.foodorderapp_main.data.entity.FoodModel" />
+    </fragment>
 </navigation>

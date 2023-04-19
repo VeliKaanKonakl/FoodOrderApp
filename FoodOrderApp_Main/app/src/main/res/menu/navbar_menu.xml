@@ -2,9 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/homeBtn"
         android:icon="@drawable/baseline_home_24"
         android:title="Home" />
     <item
+        android:id="@+id/cartBtn"
         android:icon="@drawable/baseline_shopping_cart_24"
-        android:title="Cart" />
+        android:title="Home" />
 </menu>

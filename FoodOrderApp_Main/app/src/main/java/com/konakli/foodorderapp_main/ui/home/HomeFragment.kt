@@ -34,6 +34,10 @@ class HomeFragment : Fragment() {
             binding.homeAdapter = adapter
         }
 
+        // binding.buton.setonclick..{ it
+        // Navigation.findNavController(it).navigate(R.id.action_homefragment_to_detailfragment)
+        // }
+
         return binding.root
     }
 

@@ -13,8 +13,8 @@
         tools:context=".MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="com.konakli.foodorderapp_main.ui.home.HomeFragment"
+            android:id="@+id/nav_host_fragment_activity_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
@@ -22,7 +22,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_home"
-            app:navGraph="@navigation/main_nav"/>
+            app:navGraph="@navigation/main_nav"
+            app:defaultNavHost="true"
+            />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
