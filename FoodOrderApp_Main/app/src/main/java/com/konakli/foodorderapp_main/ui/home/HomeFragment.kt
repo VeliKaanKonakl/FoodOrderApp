@@ -17,40 +17,27 @@ import com.konakli.foodorderapp_main.ui.home.HomeViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
-        binding.toolbarHome.title = "Yemek Siparis Uygulamasi"
-
-        binding.rvFoods.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
-
-        viewModel.foodsList.observe(viewLifecycleOwner) {
-            val adapter = AdapterHome(requireContext(), it, viewModel)
-            binding.homeAdapter = adapter
-        }
-
-        // binding.buton.setonclick..{ it
-        // Navigation.findNavController(it).navigate(R.id.action_homefragment_to_detailfragment)
-        // }
-
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val tempViewModel:HomeViewModel by viewModels()
-        viewModel = tempViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbarHome.title = "Yemek Siparis Uygulamasi"
+
+        binding.rvFoods.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        viewModel.foodsList.observe(viewLifecycleOwner) {
+            val adapter = AdapterHome(it)
+            binding.homeAdapter = adapter
+        }
     }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.foodLoading()
-    }
-
-
 }
