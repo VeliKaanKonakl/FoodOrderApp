@@ -1,8 +1,6 @@
 package com.konakli.foodorderapp_main.data.retrofit
 
-import androidx.lifecycle.LiveData
 import com.konakli.foodorderapp_main.data.entity.CRUDResponse
-import com.konakli.foodorderapp_main.data.entity.CartFoodModel
 import com.konakli.foodorderapp_main.data.entity.CartFoodResponse
 import com.konakli.foodorderapp_main.data.entity.FoodResponse
 import retrofit2.Call
@@ -19,24 +17,24 @@ interface FoodsService {
     @POST("yemekler/sepeteYemekEkle.php")
     @FormUrlEncoded
     fun insertFood(
-        @Field("yemek_adi") foodName : String,
-        @Field("yemek_resim_adi") foodImageName : String,
-        @Field("yemek_fiyat") foodPrice : Int,
-        @Field("yemek_siparis_adet") foodOrderPiece : Int,
-        @Field("kullanici_adi") userName : String,
-    ) : Call<CRUDResponse>
+        @Field("yemek_adi") foodName: String,
+        @Field("yemek_resim_adi") foodImageName: String,
+        @Field("yemek_fiyat") foodPrice: Int,
+        @Field("yemek_siparis_adet") foodOrderPiece: Int,
+        @Field("kullanici_adi") userName: String,
+    ): Call<CRUDResponse>
 
     @POST("yemekler/sepettekiYemekleriGetir.php")
     @FormUrlEncoded
     fun getCartFoods(
-        @Field("kullanici_adi") userName : String
+        @Field("kullanici_adi") userName: String
     ): Call<CartFoodResponse>
 
     @POST("yemekler/sepettenYemekSil.php")
     @FormUrlEncoded
     fun deleteFood(
-        @Field("sepet_yemek_id") cartFoodId : Int,
-        @Field("kullanici_adi") userName : String
-    ) : Call<CRUDResponse>
+        @Field("sepet_yemek_id") cartFoodId: Int,
+        @Field("kullanici_adi") userName: String
+    ): Call<CRUDResponse>
 
 }

@@ -7,16 +7,17 @@ import com.konakli.foodorderapp_main.data.repos.FoodRepository
 
 class HomeViewModel : ViewModel() {
 
-    val foodRepo = FoodRepository()
+    private val foodRepository = FoodRepository()
 
-    var foodsList: MutableLiveData<List<FoodModel>>
+    var foodsList = MutableLiveData<List<FoodModel>>()
+        private set
 
     init {
-        foodLoading()
-        foodsList = foodRepo.foodLoading()
+        getAllFoods()
     }
 
-    fun foodLoading() {
-        foodRepo.getAllFoods()
+    private fun getAllFoods() {
+        foodRepository.getAllFoods()
+        foodsList = foodRepository.allFoodList
     }
 }

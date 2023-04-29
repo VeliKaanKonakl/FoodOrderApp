@@ -2,44 +2,43 @@ package com.konakli.foodorderapp_main.ui.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.konakli.foodorderapp_main.R
 import com.konakli.foodorderapp_main.data.entity.CartFoodModel
-import com.konakli.foodorderapp_main.data.entity.FoodModel
 import com.konakli.foodorderapp_main.databinding.CartCardDesignBinding
-import com.konakli.foodorderapp_main.ui.home.AdapterHome
-import com.konakli.foodorderapp_main.ui.home.HomeFragmentDirections
 
-class AdapterCart(var cartFoodList: List<CartFoodModel>) :
-    RecyclerView.Adapter<AdapterCart.CartCardViewFood>() {
+class AdapterCart(
+    private val cartFoodList: List<CartFoodModel>,
+    private val onDeleteClick: (Int) -> Unit
+) : RecyclerView.Adapter<AdapterCart.CartCardViewFood>() {
 
-        inner class CartCardViewFood(var binding: CartCardDesignBinding):RecyclerView.ViewHolder(binding.root) {
-            fun bind(food: CartFoodModel) {
-                Glide.with(itemView)
-                    .load("http://kasimadalan.pe.hu/yemekler/resimler/${food.foodImage}")
-                    .override(300, 300)
-                    .into(productImage)
-                with(binding) {
-                    cartFoodObject = food
-                    deleteImage.setOnClickListener{
+    inner class CartCardViewFood(private val binding: CartCardDesignBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
+        fun bind(food: CartFoodModel) {
+
+            with(binding) {
+
+                cartFoodObject = food
+
+                deleteImage.setOnClickListener {
+                    food.cartFoodId?.let { id ->
+                        onDeleteClick(id)
                     }
                 }
             }
-
-            val productImage = binding.foodCartImageName
         }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartCardViewFood {
-        return CartCardViewFood(CartCardDesignBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun getItemCount(): Int {
-        return cartFoodList.size
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CartCardViewFood(
+        DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context), R.layout.cart_card_design, parent, false
+        )
+    )
 
-    override fun onBindViewHolder(holder: CartCardViewFood, position: Int) {
-        holder.bind(cartFoodList.get(position))
-    }
+    override fun getItemCount() = cartFoodList.size
 
+    override fun onBindViewHolder(holder: CartCardViewFood, position: Int) =
+        holder.bind(cartFoodList[position])
 }

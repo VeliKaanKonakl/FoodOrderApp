@@ -23,8 +23,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_home"
             app:navGraph="@navigation/main_nav"
-            app:defaultNavHost="true"
-            />
+            app:defaultNavHost="true" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

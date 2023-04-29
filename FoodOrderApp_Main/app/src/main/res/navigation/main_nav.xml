@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.konakli.foodorderapp_main.ui.home.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
@@ -25,7 +25,7 @@
         android:id="@+id/detailFragment"
         android:name="com.konakli.foodorderapp_main.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="food"
             app:argType="com.konakli.foodorderapp_main.data.entity.FoodModel" />

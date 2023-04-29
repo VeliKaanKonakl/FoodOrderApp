@@ -1,26 +1,42 @@
 package com.konakli.foodorderapp_main.ui.detail
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.konakli.foodorderapp_main.data.entity.CRUDResponse
 import com.konakli.foodorderapp_main.data.repos.FoodRepository
-import com.konakli.foodorderapp_main.data.retrofit.FoodsService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.security.CryptoPrimitive
 
-class DetailViewModel(private val service: FoodRepository) : ViewModel() {
-    val response: LiveData<CRUDResponse>get() = service.response
+class DetailViewModel : ViewModel() {
 
-    fun insert(
+    private val foodRepository = FoodRepository()
+
+    var response = MutableLiveData<CRUDResponse>()
+        private set
+
+    var piece = MutableLiveData(1)
+        private set
+
+    var isShow = false
+
+    init {
+        response = foodRepository.crudResponse
+    }
+
+    fun insertFood(
         foodName: String,
         foodImageName: String,
         foodPrice: Int,
         foodOrderPiece: Int,
         userName: String
     ) {
-        service.insertFood(foodName,foodImageName,foodPrice,foodOrderPiece,userName)
+        isShow = false
+        foodRepository.insertFood(foodName, foodImageName, foodPrice, foodOrderPiece, userName)
+    }
+
+    fun increasePiece() {
+        piece.value = piece.value?.plus(1)
+    }
+
+    fun decreasePiece() {
+        if (piece.value != 0) piece.value = piece.value?.minus(1)
     }
 }

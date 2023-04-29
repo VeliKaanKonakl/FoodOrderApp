@@ -12,8 +12,11 @@ import com.konakli.foodorderapp_main.R
 import com.konakli.foodorderapp_main.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+
     private lateinit var binding: FragmentHomeBinding
+
     private val viewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,12 +31,8 @@ class HomeFragment : Fragment() {
 
         binding.toolbarHome.title = "Food Order App"
 
-        binding.rvFoods.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-
         viewModel.foodsList.observe(viewLifecycleOwner) {
-            val adapter = AdapterHome(it)
-            binding.homeAdapter = adapter
+            binding.homeAdapter = AdapterHome(it)
         }
     }
 }

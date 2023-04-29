@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="cartAdapter"
+            type="com.konakli.foodorderapp_main.ui.cart.AdapterCart" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +15,7 @@
         tools:context=".ui.cart.CartFragment">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -27,10 +29,13 @@
             android:id="@+id/rv_cart"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:adapter="@{cartAdapter}"
+            android:orientation="vertical"
             android:padding="5dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

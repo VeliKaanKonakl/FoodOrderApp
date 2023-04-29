@@ -1,4 +1,6 @@
 package com.konakli.foodorderapp_main.data.entity
 
-data class CRUDResponse(var message : String,
-                        var success : Int)
+data class CRUDResponse(
+    val message: String?,
+    val success: Int?
+)

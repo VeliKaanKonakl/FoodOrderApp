@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-       <variable
-           name="cartFoodObject"
-           type="com.konakli.foodorderapp_main.data.entity.CartFoodModel" />
+
+        <variable
+            name="cartFoodObject"
+            type="com.konakli.foodorderapp_main.data.entity.CartFoodModel" />
     </data>
 
     <LinearLayout
@@ -26,6 +27,7 @@
 
                 <ImageView
                     android:id="@+id/foodCartImageName"
+                    imageUrl="@{cartFoodObject.foodImage}"
                     android:layout_width="110dp"
                     android:layout_height="92dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -35,29 +37,34 @@
 
                 <TextView
                     android:id="@+id/foodCartName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:gravity="center"
                     android:text="@{cartFoodObject.foodName}"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView2"
                     app:layout_constraintStart_toEndOf="@+id/foodCartImageName"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Izgara Somon" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
                     android:layout_marginBottom="16dp"
                     android:text='@{Integer.toString(cartFoodObject.foodPrice) + "₺"}'
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/foodCartName"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@+id/pieceCart"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="55₺" />
 
                 <ImageView
                     android:id="@+id/deleteImage"
@@ -68,6 +75,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/baseline_delete_24" />
+
+                <TextView
+                    android:id="@+id/pieceCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text='@{Integer.toString(cartFoodObject.foodCount) + " Adet"}'
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/deleteImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="4 Adet" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
